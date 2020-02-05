@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: ruby-pod
+  name: ruby-pod-pvc
 spec:
   containers:
     - name: rails-app
@@ -11,3 +11,7 @@ spec:
       args:
         - -c
         - rails db:migrate && rails server -b 0.0.0.0
+  volumes:
+    - name: db
+      persistentVolumeClaim:
+        claimName: rails-pvc

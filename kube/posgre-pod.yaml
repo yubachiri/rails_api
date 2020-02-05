@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: posgre-pod
+  labels:
+    app: sample-psql
+spec:
+  containers:
+    - name: psql
+      image: postgres:11
+      volumeMounts:
+        - mountPath: "/var/lib/postgresql/data"
+          name: pgdata
+  volumes:
+    - name: pgdata
+      persistentVolumeClaim:
+        claimName: posgre-pvc
